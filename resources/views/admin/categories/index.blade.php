@@ -2,10 +2,10 @@
 @section('content')
     <div class="container grid px-6 mx-auto">
         <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300 flex justify-between mt-4">
-            Products
-            <a href="{{route('admin.add.product')}}"
+            Categroies
+            <a href="{{route('admin.add.category')}}"
                 class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                Add Product +
+                Add Category +
             </a>
         </h4>
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
@@ -15,46 +15,30 @@
                         <tr
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3">Name</th>
-                            <th class="px-4 py-3">Price</th>
-                            <th class="px-4 py-3">Category</th>
                             <th class="px-4 py-3">Date</th>
                             <th class="px-4 py-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                        @foreach ($products as $product)
-                            
+                        @forelse ($categories as $category) 
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                        <img class="object-cover w-full h-full rounded-full"
-                                            {{-- src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ" --}}
-                                            src="{{asset('/storage/products/'.$product->image)}}"
-                                            alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">{{$product->name}}</p>
+                                        <p class="font-semibold">{{$category->name}}</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                $ {{$product->price}}
-                            </td>
-                            <td class="px-4 py-3 text-xs">
-                                <span
-                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    {{$product->category->name}}
-                                </span>
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                {{$product->created_at->diffforHumans()}}
+                                {{$category->created_at->diffforHumans()}}
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
-                                    <a href="{{route('admin.add.product',$product->id)}}"
+                                    <a href="{{route('admin.add.category',$category->id)}}"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Edit">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -63,7 +47,7 @@
                                             </path>
                                         </svg>
                                     </a>
-                                    <a href="{{route('admin.delete.product',$product->id)}}"
+                                    <a href="{{route('admin.delete.category',$category->id)}}"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Delete">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -75,8 +59,9 @@
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
-
+                        @empty
+                        <tr>sorry no data available!</tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
