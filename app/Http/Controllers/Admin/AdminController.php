@@ -26,7 +26,7 @@ class AdminController extends Controller
         return view('admin.products.index',compact('products'));
     }
 
-    public function addProduct($id = 0)
+    public function addProduct($id = null    )
     {
         $data['product'] = $id ? Product::find($id) : new Product();
         $data['categories'] = Category::get();
@@ -35,16 +35,10 @@ class AdminController extends Controller
     public function storeProduct(AddProductRequest $request, $id = 0)
     {
         $product = $id ? Product::find($id) : new Product();
-        if ($id == 0 && $request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('public/products/', $filename);
-        }
-        if($id && $request->hasFile('image')){
-            if ($product->image) Storage::delete('public/products/' . $product->image);
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('public/products/',$filename);
+        if($request->hasFile('image')){
+            if($id && $product->image) $this->deleteProductImage($product->image);
+            $filename = $request->file('image')->hashName();
+            $request->file('image')->storeAs("public/products/".$filename);
         }
         $category = Category::find($request->category);
         $product->name = $request->name;
@@ -58,6 +52,7 @@ class AdminController extends Controller
 
     public  function deleteProduct(Product $product) 
     {
+        if ($product->image) $this->deleteProductImage($product->image);
         $product->delete();
         return redirect(route('admin.products'))->with('message', 'Product deleted successfully!');
 
@@ -82,4 +77,8 @@ class AdminController extends Controller
         return redirect(route('admin.add.category'))->with('message', 'Category created successfully!');
     }
 
+    private function deleteProductImage($filename)
+    {
+        Storage::delete('public/products/'.$filename);
+    }
 }
