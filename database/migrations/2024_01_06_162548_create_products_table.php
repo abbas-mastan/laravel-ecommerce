@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price');
+            $table->decimal('discount_price');
+            $table->string('status');
             $table->string('gender');
             $table->string('image');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->longText('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

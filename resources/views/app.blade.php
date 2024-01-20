@@ -8,7 +8,7 @@
             @include('partials.Navbar')
             <main class="h-full overflow-y-auto">
                 @if (Session::has('message'))
-                    <div class="flex items-center mx-6 mt-3 justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+                    <div id="alert" class="flex items-center mx-6 mt-3 justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
                         >
                         <div class="flex items-center">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -18,13 +18,27 @@
                             </svg>
                             <span>{{ Session::get('message') }}</span>
                         </div>
-                        <span>x</span>
+                        <span class="cursor-pointer" id="close">x</span>
                     </div>
                 @endif
                 @yield('content')
             </main>
         </div>
     </div>
+    <script src="{{asset('ckeditor.js')}}"></script>
+    <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+        const close = document.getElementById('close');
+        const alert = document.getElementById('alert');
+close.addEventListener('click', () => {
+  alert.remove();
+});
+</script>
     @yield('footer')
 </body>
 </html>

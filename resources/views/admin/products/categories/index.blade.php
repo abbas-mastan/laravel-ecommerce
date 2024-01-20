@@ -15,7 +15,8 @@
                         <tr
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3">Name</th>
-                            <th class="px-4 py-3">Date</th>
+                            <th class="px-4 py-3">Description</th>
+                            <th class="px-4 py-3">Slug</th>
                             <th class="px-4 py-3">Actions</th>
                         </tr>
                     </thead>
@@ -34,7 +35,10 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{$category->created_at->diffforHumans()}}
+                                {{$category->description}}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{$category->slug}}
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">

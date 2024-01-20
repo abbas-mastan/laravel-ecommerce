@@ -14,18 +14,14 @@
                     <input name="name" value="{{ old('name', $brand->name) }}" type="text"
                         class="block w-full mt-1 text-sm @error('name') border-red-600 @enderror dark:text-gray-300 dark:bg-gray-700 focus:outline-none focus:shadow-outline-red form-input"
                         placeholder="Enter Brand Name" />
-                    @error('name')
-                        <span class="text-xs text-red-600 dark:text-red-400">
-                            {{ $message }}
-                        </span>
-                    @enderror
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </label>
                
                 <div class="mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">
                         Status
                     </span>
-                    <div class="mt-2">
+                    <div class="mt-2 mb-4">
                         <label class="inline-flex items-center text-gray-600 dark:text-gray-400">
                             <input type="radio"
                                 class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
@@ -39,14 +35,10 @@
                             <span class="ml-2">Inactive</span>
                         </label>
                     </div>
-                    @error('status')
-                        <span class="text-xs text-red-600 dark:text-red-400">
-                            {{ $message }}
-                        </span>
-                    @enderror
+                    <x-input-error :messages="$errors->get('status')" class="mt-2" />
                 </div>
                 <button type="submit"
-                    class="mt-5 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    class="mt-10 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                     Submit
                 </button>
             </form>

@@ -36,7 +36,7 @@
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                     </div> --}}
                                     <div>
-                                        <p class="font-semibold">{{$brand->id}}</p>
+                                        <p class="font-semibold">{{$loop->iteration}}</p>
                                     </div>
                                 </div>
                             </td>
@@ -48,7 +48,7 @@
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span
-                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    class="px-2 py-1 font-semibold leading-tight text-green-700 {{$brand->status == 'active' ? 'bg-green-100':'bg-red-200'}} rounded-full dark:bg-green-700 dark:text-green-100">
                                     {{$brand->status}}
                                 </span>
                             </td>

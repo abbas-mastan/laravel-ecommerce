@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BenefitController;
 use App\Http\Controllers\Admin\OpinionController;
 use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VariationController;
 
 /*
@@ -25,11 +26,7 @@ Route::get('/',[AdminController::class,'index']);
 Route::redirect('/','/admin/dashboard');
 Route::group(['middleware' => ['auth'],'prefix' => 'admin','as'=>'admin.'], function () {
     Route::get('dashboard',[AdminController::class,'index'])->name('dashboard');
-    Route::get('categories',[AdminController::class,'categories'])->name('categories');
     Route::get('products',[AdminController::class,'products'])->name('products');
-    Route::get('add-category/{id?}',[AdminController::class,'addCategory'])->name('add.category');
-    Route::get('delete-category/{category}',[AdminController::class,'deleteCategory'])->name('delete.category');
-    Route::post('add-category/{id?}',[AdminController::class,'storeCategory'])->name('store.category');
     Route::get('add-product/{id?}',[AdminController::class,'addProduct'])->name('add.product');
     Route::get('delete-product/{product}',[AdminController::class,'deleteProduct'])->name('delete.product');
     Route::post('add-product/{id?}',[AdminController::class,'storeProduct'])->name('store.product');
@@ -63,4 +60,10 @@ Route::group(['middleware' => ['auth'],'prefix' => 'admin','as'=>'admin.'], func
     Route::get('add-brand/{id?}',[BrandController::class,'createBrand'])->name('add.brand');
     Route::post('store-brand/{id?}',[BrandController::class,'storeBrand'])->name('store.brand');
     Route::get('delete-brand/{brand}',[BrandController::class,'destroyBrand'])->name('delete.brand');
+    //categories routes starts here
+    Route::get('categories',[CategoryController::class,'categories'])->name('categories');
+    Route::get('add-category/{id?}',[CategoryController::class,'addCategory'])->name('add.category');
+    Route::get('delete-category/{category}',[CategoryController::class,'deleteCategory'])->name('delete.category');
+    Route::post('add-category/{id?}',[CategoryController::class,'storeCategory'])->name('store.category');
+
 });

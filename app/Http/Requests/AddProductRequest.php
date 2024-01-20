@@ -24,7 +24,9 @@ class AddProductRequest extends FormRequest
         return [
             'name'=> 'required|min:5',
             'price'=> 'required|max:10',
+            'discount_price'=> 'required|max:10',
             'gender'=> 'required',
+            'status'=> 'required',
             'update'=> 'nullable',
             'image'=> 'required_if:update,no',
             'category'=> 'required',
