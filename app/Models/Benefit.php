@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Attribute extends Model
+class Benefit extends Model
 {
     use HasFactory;
 
-    public function variations() 
+    public function opinion()       
     {
-        return $this->hasMany(Variation::class,'attribute_id');
+        return $this->belongsTo(Opinion::class,'opinion_id');
     }
 }

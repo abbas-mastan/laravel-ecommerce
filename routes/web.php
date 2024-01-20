@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\OpinionController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\BenefitController;
+use App\Http\Controllers\Admin\OpinionController;
 use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\VariationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +48,19 @@ Route::group(['middleware' => ['auth'],'prefix' => 'admin','as'=>'admin.'], func
     Route::post('store-opinion/{id?}',[OpinionController::class,'storeOpinion'])->name('store.opinion');
     Route::get('opinions',[OpinionController::class,'indexOpinion'])->name('opinions');
     Route::get('delete-opinion/{opinion}',[OpinionController::class,'destroyOpinion'])->name('delete.opinion');
+    //benfits routes starts here
+    Route::get('benefits',[BenefitController::class,'indexBenefit'])->name('benefits');
+    Route::get('add-benefit/{id?}',[BenefitController::class,'createBenefit'])->name('add.benefit');
+    Route::post('store-benefit/{id?}',[BenefitController::class,'storeBenefit'])->name('store.benefit');
+    Route::get('delete-benefit/{benefit}',[BenefitController::class,'destroyBenefit'])->name('delete.benefit');
+    //variation routes starts here
+    Route::get('variations',[VariationController::class,'indexVariation'])->name('variations');
+    Route::get('add-variation/{id?}',[VariationController::class,'createVariation'])->name('add.variation');
+    Route::post('store-variation/{id?}',[VariationController::class,'storeVariation'])->name('store.variation');
+    Route::get('delete-variation/{variation}',[VariationController::class,'destroyVariation'])->name('delete.variation');
+    //brands routes starts here
+    Route::get('brands',[BrandController::class,'indexBrand'])->name('brands');
+    Route::get('add-brand/{id?}',[BrandController::class,'createBrand'])->name('add.brand');
+    Route::post('store-brand/{id?}',[BrandController::class,'storeBrand'])->name('store.brand');
+    Route::get('delete-brand/{brand}',[BrandController::class,'destroyBrand'])->name('delete.brand');
 });

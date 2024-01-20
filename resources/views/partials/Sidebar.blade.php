@@ -88,15 +88,15 @@
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/404.html">Product Benefit</a>
+                            <a class="w-full" href="{{route('admin.benefits')}}">Product Benefit</a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/blank.html">Product Variations</a>
+                            <a class="w-full" href="{{route('admin.variations')}}">Product Variations</a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/blank.html">Product Brands</a>
+                            <a class="w-full" href="{{route('admin.brands')}}">Product Brands</a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">

@@ -24,7 +24,7 @@ class AttributeController extends Controller
         $unit = $id ? Attribute::find($id) : new Attribute();
         $unit->name = $request->name;
         $unit->save();
-        return redirect(route('admin.add.attribute'))->with('message', 'Attribute'. ($id ? ' updated ':' created '). 'successfully!');
+        return redirect(route('admin.attributes'))->with('message', 'Attribute'. ($id ? ' updated ':' created '). 'successfully!');
     }
     public function destroyAttribute(Attribute $attribute)
     {
