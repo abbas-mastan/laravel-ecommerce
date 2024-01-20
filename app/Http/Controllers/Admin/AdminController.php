@@ -26,7 +26,7 @@ class AdminController extends Controller
         return view('admin.products.index',compact('products'));
     }
 
-    public function addProduct($id = null    )
+    public function addProduct($id = null)
     {
         $data['product'] = $id ? Product::find($id) : new Product();
         $data['categories'] = Category::get();
